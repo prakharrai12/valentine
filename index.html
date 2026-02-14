@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Srishti 💖</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    overflow: hidden;
+    color: white;
+}
+
+/* Background Video */
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Dark overlay */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+    backdrop-filter: blur(6px);
+    z-index: -1;
+}
+
+/* Main container */
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Glass Card */
+.card {
+    background: rgba(255,255,255,0.1);
+    padding: 60px 40px;
+    border-radius: 25px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.6);
+    animation: fadeIn 2s ease;
+    max-width: 700px;
+}
+
+/* Heading */
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Buttons */
+.buttons {
+    margin-top: 30px;
+}
+
+button {
+    padding: 14px 35px;
+    margin: 10px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.yes {
+    background: #ff4d6d;
+    color: white;
+}
+
+.yes:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #ff4d6d;
+}
+
+.no {
+    background: white;
+    color: #ff4d6d;
+    position: relative;
+}
+
+/* Bear gif floating */
+.bear {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: red;
+    top: -10px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@media(max-width:600px){
+    h1{font-size:2rem;}
+    .card{padding:40px 20px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Video -->
+<video autoplay muted loop id="bgVideo">
+    <source src="sailor.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="container">
+    <div class="card">
+        <h1>Will You Be Mine, Srishti? 💖</h1>
+        <p>
+            Srishti, from the moment you came into my life,
+            everything started feeling softer, warmer, brighter.
+            Your smile feels like home.
+            Your voice feels like peace.
+            I don’t just like you…
+            I adore you.
+            I choose you.
+            I want you.
+            Today, tomorrow, and every chaotic beautiful day after that.
+        </p>
+
+        <div class="buttons">
+            <button class="yes" onclick="sayYes()">Yes 💕</button>
+            <button class="no" onmouseover="moveButton()">No 😏</button>
+        </div>
+    </div>
+</div>
+
+<img src="bear-cute-kiss.gif" class="bear">
+
+<script>
+let musicUnlocked = false;
+
+document.addEventListener("click", function(){
+    const video = document.getElementById("bgVideo");
+    if(!musicUnlocked){
+        video.muted = false;
+        video.play();
+        musicUnlocked = true;
+    }
+});
+
+function moveButton(){
+    const button = document.querySelector(".no");
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+    button.style.position = "absolute";
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+}
+
+function sayYes(){
+    startConfetti();
+    alert("You just made me the happiest person alive 😭💖");
+}
+
+function startConfetti(){
+    for(let i=0;i<150;i++){
+        let confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        document.body.appendChild(confetti);
+
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.backgroundColor = 
+            ["#ff4d6d","#ffffff","#ff85a2","#ffd6e0"][Math.floor(Math.random()*4)];
+        confetti.style.animationDuration = (Math.random()*3+2) + "s";
+    }
+}
+</script>
+
+</body>
+</html>
